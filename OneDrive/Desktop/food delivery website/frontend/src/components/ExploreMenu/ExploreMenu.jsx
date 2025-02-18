@@ -15,7 +15,7 @@ const ExploreMenu = ({ category, setCategory }) => {
             <div
               onClick={() =>
                 setCategory((prev) =>
-                  prev === item.menu_name ? 'All' : item.menu
+                  prev === item.menu_name ? "All" : item.menu_name
                 )
               }
               key={index}
