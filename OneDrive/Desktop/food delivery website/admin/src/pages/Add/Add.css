@@ -1,6 +1,6 @@
 .image-resize1{
-    width:50px;
-    height:40px;
+    width: 120px;
+    height:70px;
 }
 
 .add{
@@ -13,4 +13,38 @@
 
 .add form{
     gap:20px;
+} 
+
+
+.flex-col{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+.add-product-name, .add-product-description{
+    width: max(40%,20px);
+}
+
+.add-product-name input,.add-product-description textarea{
+    padding: 10px;
+}
+
+.add-category-price{
+    display: flex;
+    gap: 30px;
+}
+
+.add-category-price select, .add-category-price input{
+    max-width: 120px;
+    padding: 10px;
+}
+
+.add-btn{
+    max-width: 120px;
+    border:none;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
 }
