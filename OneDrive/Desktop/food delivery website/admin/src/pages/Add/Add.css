@@ -1,0 +1,16 @@
+.image-resize1{
+    width:50px;
+    height:40px;
+}
+
+.add{
+    width:70%;
+    margin-left: max(5vw,25px);
+    margin-top: 50px;
+    color: #6d6d6d;
+    font-size: 16px;
+}
+
+.add form{
+    gap:20px;
+}
