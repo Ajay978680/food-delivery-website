@@ -7,12 +7,19 @@ const Footer = () => {
         <div className='footer-content'>
             <div className='footer-content-left'>
                 <img src={assets.logo} alt=""/>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. A accusamus doloribus, possimus quidem ipsa quo necessitatibus omnis reprehenderit distinctio voluptatum facere saepe eveniet libero commodi assumenda ipsum laboriosam nostrum ducimus.</p>
+                <p>We bring you fresh, locally sourced meals from your favorite restaurants. Quality food, quick delivery, and a seamless ordering experience—just for you!</p>
                 <div className='footer-social-icons'>
-                    <img src={assets.facebook_icon} alt=""/>
-                    <img src={assets.twitter_icon} alt=""/>
-                    <img src={assets.linkedin_icon} alt=""/>
-
+                <div className='footer-social-icons'>
+  <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+    <img src={assets.facebook_icon} alt="Facebook" />
+  </a>
+  <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+    <img src={assets.twitter_icon} alt="Twitter" />
+  </a>
+  <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <img src={assets.linkedin_icon} alt="LinkedIn" />
+  </a>
+</div>
                 </div>
             </div>
             <div className='footer-content-center'>
@@ -28,7 +35,7 @@ const Footer = () => {
                 <h2>Get In Touch</h2>
                 <ul>
                     <li>+91 6383778586</li>
-                    <li>sparkajay001@gmail.com</li>
+                    <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=tomatofood@gmail.com">tomatofood@gmail.com</a></li>
                 </ul>
             </div>
         </div>
