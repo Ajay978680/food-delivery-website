@@ -1,0 +1,98 @@
+.order-container {
+    max-width: 90%;
+    margin: 30px auto;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    overflow-x: auto;
+}
+
+h3 {
+    font-size: 26px;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.order-table th, .order-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    font-size: 15px;
+}
+
+.order-table th {
+    background-color: #cacaca;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+}
+
+.order-table td {
+    vertical-align: middle;
+    background: #ffffff;
+}
+
+.parcel-icon {
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+}
+
+.order-table tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+.order-table tr:hover {
+    background-color: #dff9fb;
+    transition: 0.3s;
+}
+
+.options {
+    border-radius: 5px;
+    border: 1px solid #e74c3c;
+    padding: 5px;
+    font-size: 14px;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.options:hover {
+    background: #e74c3c;
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .order-container {
+        padding: 20px;
+    }
+    
+    .order-table th, .order-table td {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .parcel-icon {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    .order-table th, .order-table td {
+        font-size: 12px;
+        padding: 8px;
+    }
+}
