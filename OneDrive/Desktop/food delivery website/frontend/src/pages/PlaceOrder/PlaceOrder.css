@@ -43,3 +43,15 @@
 .qr{
     width:150px;
 }
+
+.error {
+    border: 2px solid red;
+    animation: blink 0.3s 3;
+  }
+  
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+  

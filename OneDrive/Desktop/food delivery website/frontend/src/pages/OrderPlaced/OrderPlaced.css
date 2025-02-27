@@ -1,0 +1,26 @@
+.order-placed-container {
+    text-align: center;
+    margin-top: 100px;
+  }
+  
+  .order-animation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .checkmark {
+    font-size: 50px;
+    color: green;
+    animation: pop 0.5s ease-out forwards;
+  }
+  
+  @keyframes pop {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  

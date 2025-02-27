@@ -1,11 +1,10 @@
 import { useContext, useState } from "react";
 import "./PlaceOrder.css";
 import { StoreContext } from "../../context/StoreContext";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const PlaceOrder = () => {
-  const { getTotalCartAmount, token, food_list, cartItems, url } = useContext(StoreContext);
+  const { getTotalCartAmount, food_list, cartItems, clearCart } = useContext(StoreContext);
   const navigate = useNavigate();
 
   const [data, setData] = useState({
@@ -21,34 +20,49 @@ const PlaceOrder = () => {
   });
 
   const [paymentType, setPaymentType] = useState("Cash");
+  const [errors, setErrors] = useState({});
 
   const onchangeHandler = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setData((data) => ({ ...data, [name]: value }));
+    const { name, value } = event.target;
+    setData((prevData) => ({ ...prevData, [name]: value }));
+
+    // Remove error when the user starts typing
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
   };
 
-  const placeOrder = async (event) => {
-    event.preventDefault();
-    let orderItems = [];
-    food_list.map((item) => {
-      if (cartItems[item._id] > 0) {
-        let itemInfo = { ...item, quantity: cartItems[item._id] };
-        orderItems.push(itemInfo);
+  const isFormValid = () => {
+    let newErrors = {};
+    Object.entries(data).forEach(([key, value]) => {
+      if (value.trim() === "") {
+        newErrors[key] = "Required";
       }
     });
 
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const placeOrder = (event) => {
+    event.preventDefault();
+    if (!isFormValid()) {
+      return;
+    }
+
+    let orderItems = food_list
+      .filter((item) => cartItems[item._id] > 0)
+      .map((item) => ({ ...item, quantity: cartItems[item._id] }));
+
     let orderData = {
-      firstName: data.firstName,
-      lastName: data.lastName,
+      ...data,
       items: orderItems,
       amount: getTotalCartAmount() + 2,
     };
 
-    // Assuming order API call here
-    // const response = await axios.post(url + "/api/order/create", orderData, { headers: { token } });
-    // const { orderId, razorpayOrder } = response.data;
-    // initiatePayment(razorpayOrder, orderId);
+    console.log("Order Placed:", orderData);
+
+    clearCart(); // Clears the cart after checkout
+
+    navigate("/order-placed");
   };
 
   return (
@@ -56,21 +70,22 @@ const PlaceOrder = () => {
       <div className="place-order-left">
         <p className="title">Delivery Information</p>
         <div className="multi-fields">
-          <input required name="firstName" onChange={onchangeHandler} value={data.firstName} type="text" placeholder="First Name" />
-          <input required name="lastName" onChange={onchangeHandler} value={data.lastName} type="text" placeholder="Last name" />
+          <input className={errors.firstName ? "error" : ""} required name="firstName" onChange={onchangeHandler} value={data.firstName} type="text" placeholder="First Name" />
+          <input className={errors.lastName ? "error" : ""} required name="lastName" onChange={onchangeHandler} value={data.lastName} type="text" placeholder="Last Name" />
         </div>
-        <input required name="email" onChange={onchangeHandler} value={data.email} type="email" placeholder="Email address" />
-        <input required name="street" onChange={onchangeHandler} value={data.street} type="text" placeholder="Street" />
+        <input className={errors.email ? "error" : ""} required name="email" onChange={onchangeHandler} value={data.email} type="email" placeholder="Email address" />
+        <input className={errors.street ? "error" : ""} required name="street" onChange={onchangeHandler} value={data.street} type="text" placeholder="Street" />
         <div className="multi-fields">
-          <input required name="city" onChange={onchangeHandler} value={data.city} type="text" placeholder="City" />
-          <input required name="state" onChange={onchangeHandler} value={data.state} type="text" placeholder="State" />
+          <input className={errors.city ? "error" : ""} required name="city" onChange={onchangeHandler} value={data.city} type="text" placeholder="City" />
+          <input className={errors.state ? "error" : ""} required name="state" onChange={onchangeHandler} value={data.state} type="text" placeholder="State" />
         </div>
         <div className="multi-fields">
-          <input required name="zipcode" onChange={onchangeHandler} value={data.zipcode} type="text" placeholder="Zip Code" />
-          <input required name="country" onChange={onchangeHandler} value={data.country} type="text" placeholder="Country" />
+          <input className={errors.zipcode ? "error" : ""} required name="zipcode" onChange={onchangeHandler} value={data.zipcode} type="text" placeholder="Zip Code" />
+          <input className={errors.country ? "error" : ""} required name="country" onChange={onchangeHandler} value={data.country} type="text" placeholder="Country" />
         </div>
-        <input required name="phone" onChange={onchangeHandler} value={data.phone} type="text" placeholder="Phone" />
+        <input className={errors.phone ? "error" : ""} required name="phone" onChange={onchangeHandler} value={data.phone} type="text" placeholder="Phone" />
       </div>
+      
       <div className="place-order-right">
         <div className="cart-total">
           <h2>Cart Totals</h2>
@@ -92,10 +107,10 @@ const PlaceOrder = () => {
           {paymentType === "Online" && (
             <div className="qr-scanner">
               <p>Scan the QR Code to Proceed</p>
-              <img className='qr' src="/qr.jpg" alt="QR Code" />
+              <img className="qr" src="/qr.jpg" alt="QR Code" />
             </div>
           )}
-          <button onClick={() => navigate("payment")}>PROCEED TO CHECKOUT</button>
+          <button type="submit">PROCEED TO CHECKOUT</button>
         </div>
       </div>
     </form>

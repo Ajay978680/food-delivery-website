@@ -94,6 +94,11 @@ const StoreContextProvider = (props) => {
         }
     };
 
+    const clearCart = () => {
+        setCartItems({}); // Reset the cart
+    };
+    
+
     const fetchOrders = async () => {
         if (token) {
             try {
@@ -129,7 +134,8 @@ const StoreContextProvider = (props) => {
         setToken,
         addOrder,
         orders,
-        username
+        username,
+        clearCart
     };
 
     return (
