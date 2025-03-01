@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./ExploreMenu.css";
-import { menu_list } from "../../assets/assets";
+import { assets, menu_list } from "../../assets/assets";
 
 const ExploreMenu = ({ category, setCategory }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -14,17 +14,21 @@ const ExploreMenu = ({ category, setCategory }) => {
     <div className="explore-menu" id="explore-menu">
       <h1>Explore Our Menu</h1>
       <p className="explore-menu-text">
-        Choose from a diverse menu featuring a delectable array of dishes. Our mission is to Satisfy the Customers.
+      Satisfy your cravings with our delicious fresh Dishes. Treat yourself to our mouthwatering desserts and cakes. Explore our menu and enjoy every bite! 🍽️✨
       </p>
 
       {/* Search Bar */}
-      <input
-        type="text"
-        className="search-input"
-        placeholder="Search menu..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
+      <div className="search-container">
+  <img src={assets.search_icon} alt="" className="search-icon" />
+  <input
+    type="text"
+    className="search-input"
+    placeholder="Search menu..."
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+  />
+</div>
+
 
       <div className="explore-menu-list">
         {filteredMenu.length > 0 ? (

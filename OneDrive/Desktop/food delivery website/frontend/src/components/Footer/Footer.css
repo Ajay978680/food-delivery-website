@@ -59,3 +59,14 @@
         text-align: center;
     }
 }
+
+.footer-logo-text {
+    font-size: 2rem; /* Bigger font size */
+    font-weight: 700; /* Slightly bold */
+    color: #ff4500; /* Vibrant color */
+    font-family: 'Montserrat', sans-serif; /* Modern font */
+    letter-spacing: 1.5px; /* Spaced out for elegance */
+    text-transform: uppercase; /* Logo-style uppercase */
+    margin-bottom: 10px;
+  }
+  

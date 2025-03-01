@@ -7,7 +7,9 @@ import axios from "axios";
 const LoginPopup = ({ setShowLogin }) => {
   const { url, setToken } = useContext(StoreContext);
   const [currState, setCurrState] = useState("Login");
-  const [data, setData] = useState({ name: "", email: "", password: "" });
+  const [data, setData] = useState({ name: "", email: "", password: "", confirmPassword: "" });
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
@@ -16,6 +18,16 @@ const LoginPopup = ({ setShowLogin }) => {
 
   const onLogin = async (event) => {
     event.preventDefault();
+    setErrorMessage("");  
+    setLoading(true);  
+
+    // ✅ Check if passwords match before sending request
+    if (currState === "Sign Up" && data.password !== data.confirmPassword) {
+      setErrorMessage("Passwords do not match!");
+      setLoading(false);
+      return;
+    }
+
     let newUrl = url + (currState === "Login" ? "/api/user/login" : "/api/user/register");
 
     try {
@@ -26,17 +38,20 @@ const LoginPopup = ({ setShowLogin }) => {
         localStorage.setItem("token", response.data.token);
         setShowLogin(false);
       } else {
-        alert(response.data.message);
+        setErrorMessage(response.data.message || "Invalid credentials. Please try again.");
       }
     } catch (error) {
       console.error("Login error:", error);
-      alert("Something went wrong. Please try again.");
+      setErrorMessage("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   const toggleState = () => {
     setCurrState(currState === "Login" ? "Sign Up" : "Login");
-    setData({ name: "", email: "", password: "" });
+    setData({ name: "", email: "", password: "", confirmPassword: "" });
+    setErrorMessage("");
   };
 
   return (
@@ -52,14 +67,27 @@ const LoginPopup = ({ setShowLogin }) => {
           )}
           <input name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Your email' required />
           <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Password' required />
+          
+          {/* ✅ Show Confirm Password only for Sign Up */}
+          {currState === 'Sign Up' && (
+            <input name='confirmPassword' onChange={onChangeHandler} value={data.confirmPassword} type="password" placeholder='Confirm Password' required />
+          )}
         </div>
-        <button type='submit'>{currState === 'Login' ? 'Login' : 'Create account'}</button>
+
+        {/* 🔹 Show error message if passwords don’t match */}
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+        <button type='submit' disabled={loading}>
+          {loading ? "Processing..." : currState === 'Login' ? 'Login' : 'Create account'}
+        </button>
+
         <div className="login-popup-condition">
           <label>
             <input type='checkbox' required />
             By continuing, I agree to the terms of use & privacy policy.
           </label>
         </div>
+
         {currState === 'Login'
           ? <p>Create a new account? <span onClick={toggleState}>Click here</span></p>
           : <p>Already have an account? <span onClick={toggleState}>Login here</span></p>

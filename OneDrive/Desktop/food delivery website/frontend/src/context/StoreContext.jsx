@@ -60,39 +60,24 @@ const StoreContextProvider = (props) => {
                     totalAmount: getTotalCartAmount(),
                     userToken: token
                 };
+    
                 const response = await axios.post(url + '/api/order/add', order, { headers: { token } });
                 setOrders(prevOrders => [...prevOrders, response.data.order]);
-                setCartItems({}); // Clear cart after order is placed
-
-                // Initialize Razorpay payment after order creation
-                const options = {
-                    key: 'rzp_test_XaKxMIz6dgyedW',  // Replace with your Razorpay key_id
-                    amount: response.data.order.totalAmount * 100,  // Convert to paise
-                    currency: 'INR',
-                    name: 'Your Company Name',
-                    description: 'Payment for Order',
-                    order_id: response.data.order.razorpayOrderId,  // Assuming order response includes razorpayOrderId
-                    handler: function (paymentResponse) {
-                        alert('Payment successful! Payment ID: ' + paymentResponse.razorpay_payment_id);
-                        // Optionally handle payment success here (e.g., update order status)
-                    },
-                    prefill: {
-                        name: username,
-                        email: 'customer@example.com',
-                        contact: '9876543210'
-                    },
-                    notes: {
-                        address: 'Address for order'
-                    },
-                };
-
-                const razorpayInstance = new window.Razorpay(options);
-                razorpayInstance.open();
+    
+                // ✅ Clear cart in frontend
+                setCartItems({});
+                localStorage.removeItem("cart");
+    
+                // ✅ Clear cart in backend
+                await axios.post(url + '/api/cart/clear', {}, { headers: { token } });
+    
             } catch (error) {
                 console.error("Failed to place order:", error);
             }
         }
     };
+    
+    
 
     const clearCart = () => {
         setCartItems({}); // Reset the cart

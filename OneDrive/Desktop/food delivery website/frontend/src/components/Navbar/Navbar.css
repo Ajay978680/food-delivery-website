@@ -139,3 +139,22 @@
 .nav-profile-dropdown li:hover{
     color:tomato;
 }
+
+.logo-text {
+    font-size: 2rem; /* Larger font size */
+    font-weight: 600; /* Slightly bold */
+    color: #ff4500; /* Warm, vibrant color */
+    text-decoration: none; /* Removes underline */
+    font-family: 'Montserrat', sans-serif; /* Modern, stylish font */
+    letter-spacing: 1.2px; /* Slight spacing for elegance */
+    text-transform: capitalize; /* Keeps the first letter uppercase */
+    transition: all 0.3s ease-in-out; /* Smooth hover effect */
+  }
+  
+  .logo-text:hover {
+    color: #e63900; /* Slightly darker shade on hover */
+    transform: scale(1.06); /* Subtle zoom-in effect */
+  }
+  
+  
+  
