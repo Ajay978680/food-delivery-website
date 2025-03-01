@@ -1,17 +1,15 @@
-.image-resize{
-    height:20px;
-}
-
-
-.sidebar{
+/* Sidebar */
+.sidebar {
     width: 18%;
     min-height: 100vh;
-    border:1.5px solid #a9a9a9 ;
+    border: 1.5px solid #a9a9a9;
     border-top: 0;
-    font-size: max(1vw,10px);
+    font-size: max(1vw, 10px);
+    transition: width 0.3s ease-in-out;
 }
 
-.sidebar-options{
+/* Sidebar options layout */
+.sidebar-options {
     padding-top: 50px;
     padding-left: 20%;
     display: flex;
@@ -19,24 +17,88 @@
     gap: 20px;
 }
 
-.sidebar-option{
+/* Sidebar option styling */
+.sidebar-option {
     display: flex;
     align-items: center;
-    gap:12px;
-    border: 1px solid ;
-    border-right: o;
+    gap: 12px;
+    border: 1px solid;
+    border-right: 0;
     padding: 8px 10px;
     border-radius: 3px 0px 0px 3px;
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-@media (max-width:900px){
-    .sidebar-option p{
-        display: none;
+/* Active sidebar option */
+.sidebar-option.active {
+    background-color: #fff0ed;
+    border-color: tomato;
+}
+
+/* Sidebar option hover effect */
+.sidebar-option:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.05);
+}
+
+/* Image resizing */
+.image-resize {
+    height: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Sidebar text styling */
+.sidebar-text {
+    transition: font-size 0.3s ease-in-out;
+}
+
+/* Media Queries */
+
+/* For screen sizes smaller than 900px */
+@media (max-width: 900px) {
+    .sidebar {
+        width: 80px;
+    }
+
+    .sidebar-options {
+        padding-left: 10px;
+    }
+
+    .sidebar-option {
+        justify-content: center;
+        gap: 0;
+        padding: 10px;
+    }
+
+    .sidebar-text {
+        font-size: 12px;
     }
 }
 
-.sidebar-option.active{
-    background-color: #fff0ed;
-    border-color: tomato;
+/* For screen sizes smaller than 600px */
+@media (max-width: 600px) {
+    .sidebar {
+        width: 60px;
+    }
+
+    .sidebar-option {
+        padding: 12px;
+    }
+
+    .sidebar-text {
+        display: none;
+    }
+
+    /* Optional: add a hover effect for icons in small screens */
+    .sidebar-option:hover .image-resize {
+        transform: rotate(10deg);
+    }
+}
+
+/* For screen sizes smaller than 400px */
+@media (max-width: 400px) {
+    .sidebar {
+        width: 50px;
+    }
 }

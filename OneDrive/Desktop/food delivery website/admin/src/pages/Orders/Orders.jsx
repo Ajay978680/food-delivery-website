@@ -61,9 +61,9 @@ const Orders = () => {
             <td>
               <p>Greek Salad x 3, Veg Salad x 2</p>
             </td>
-            <td>Ajay Kanna</td>
-            <td>1/445, Tirupur, Tamil Nadu, India, 641168</td>
-            <td>9576846853</td>
+            <td>Tony</td>
+            <td>66, New York, Times New Square, USA, 99168</td>
+            <td>+33355690</td>
             <td>5</td>
             <td><p>$74</p></td>
             <td>
@@ -78,6 +78,29 @@ const Orders = () => {
               </select>
             </td>
           </tr>
+          {/* <tr>
+            <td><img src={assets.parcel_icon} alt="Parcel Icon" className='parcel-icon' /></td>
+            <td>
+              <p>Veg Salad x 2, Peri Peri Rolls x 1</p>
+            </td>
+            <td>Xavier</td>
+            <td>1,Los Angeles,Hollywood, 68665</td>
+            <td>+33445566</td>
+            <td>3</td>
+            <td><p>$44</p></td>
+            <td>
+              <select 
+                className='options' 
+                value={orderStatus.Xavier} 
+                onChange={(e) => handleStatusChange('Xavier', e.target.value)}
+              >
+                <option value="Food Processing">Food Processing</option>
+                <option value="Out of Delivery">Out of Delivery</option>
+                <option value="Delivered">Delivered</option>
+              </select>
+            </td>
+          </tr> */}
+          
         </tbody>
       </table>
     </div>

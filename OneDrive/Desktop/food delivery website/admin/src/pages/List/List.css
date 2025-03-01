@@ -10,6 +10,11 @@
 
 .list-table-format.title{
     background-color: #cacaca;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    transition: background-color 0.3s ease-in-out;
 }
 
 .list-table-format img{
@@ -29,3 +34,9 @@
 .cursor{
     cursor: pointer;
 }
+
+.list-table-format:hover {
+    background-color: rgba(255, 99, 71, 0.2); /* Light Tomato shade */
+    cursor: pointer;
+}
+

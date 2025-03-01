@@ -1,51 +1,110 @@
-.image-resize1{
-    width: 120px;
-    height:70px;
-}
-
-.add{
-    width:70%;
-    margin-left: max(5vw,25px);
+/* Styling the form container */
+.add {
+    width: 75%;
+    margin-left: 5vw;
     margin-top: 50px;
-    color: #6d6d6d;
+    color: #444; /* Darker text for better contrast */
     font-size: 16px;
+    background-color: #f9f9f9; /* Light background for a clean look */
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-.add form{
-    gap:20px;
-} 
-
-
-.flex-col{
+/* Adding spacing between form elements */
+.add form {
     display: flex;
     flex-direction: column;
-    gap:10px;
+    gap: 20px;
 }
 
-.add-product-name, .add-product-description{
-    width: max(40%,20px);
-}
-
-.add-product-name input,.add-product-description textarea{
-    padding: 10px;
-}
-
-.add-category-price{
+/* General flex-column class */
+.flex-col {
     display: flex;
-    gap: 30px;
+    flex-direction: column;
+    gap: 12px; /* Slightly bigger gap for better readability */
 }
 
-.add-category-price select, .add-category-price input{
-    max-width: 120px;
-    padding: 10px;
+/* Input and textarea styling */
+.add-product-name input,
+.add-product-description textarea,
+.add-category-price select,
+.add-category-price input {
+    padding: 12px;
+    border: 1px solid #ccc; /* Light border for input fields */
+    border-radius: 6px;
+    font-size: 14px; /* Slightly smaller font for input */
+    background-color: #fff; /* White background for fields */
+    transition: border 0.3s ease; /* Smooth border transition */
 }
 
-.add-btn{
-    max-width: 120px;
-    border:none;
-    padding: 10px;
-    background-color: black;
-    color: white;
+/* Border color change on focus */
+.add-product-name input:focus,
+.add-product-description textarea:focus,
+.add-category-price select:focus,
+.add-category-price input:focus {
+    border-color: #ff4500; /* Highlight border with a color */
+    outline: none;
+}
+
+/* Styling for image upload */
+.add-img-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-img-upload p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.add-img-upload input {
+    display: none;
+}
+
+.image-resize1 {
+    width: 130px;
+    height: 80px;
+    object-fit: cover;
     cursor: pointer;
+    border-radius: 6px; /* Rounded corners for the image */
 }
 
+/* Category and price section */
+.add-category-price {
+    display: flex;
+    gap: 25px;
+}
+
+.add-category-price select,
+.add-category-price input {
+    width: 150px;
+    padding: 12px;
+    border-radius: 6px;
+}
+
+/* Button Styling */
+.add-btn {
+    max-width: 130px;
+    padding: 12px;
+    background-color: #ff4500; /* Vibrant color for the button */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+.add-btn:hover {
+    background-color: #e04300; /* Darker shade when hovered */
+}
+
+/* Small text under the form */
+.add p {
+    font-size: 14px;
+    color: #888;
+}
