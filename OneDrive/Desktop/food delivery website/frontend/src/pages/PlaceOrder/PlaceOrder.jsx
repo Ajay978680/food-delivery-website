@@ -2,10 +2,11 @@ import { useContext, useState } from "react";
 import "./PlaceOrder.css";
 import { StoreContext } from "../../context/StoreContext";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const PlaceOrder = () => {
-  const { getTotalCartAmount, food_list, cartItems, clearCart } = useContext(StoreContext);
-  const navigate = useNavigate();
+  const location = useLocation();
+  const discountedTotal = location.state?.finalTotal || getTotalCartAmount() + 20;
 
   const [data, setData] = useState({
     firstName: "",
@@ -85,13 +86,13 @@ const PlaceOrder = () => {
         </div>
         <input className={errors.phone ? "error" : ""} required name="phone" onChange={onchangeHandler} value={data.phone} type="text" placeholder="Phone" />
       </div>
-      
+
       <div className="place-order-right">
         <div className="cart-total">
           <h2>Cart Totals</h2>
           <div className="cart-total-details">
             <p>Subtotal</p>
-            <p>${getTotalCartAmount()}</p>
+            <p>₹{discountedTotal.toFixed(2)}</p> {/* Updated to use the discounted total */}
           </div>
           <hr />
           <div className="payment-options">
